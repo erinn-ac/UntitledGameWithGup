@@ -11,8 +11,11 @@ class Level():
     #load images
     grassBlockImg = pygame.image.load('Assets/grass_block.png')
     dirtBlockImg = pygame.image.load('Assets/dirt_block.png')
+    blueBlockImg = pygame.image.load('Assets/blue_block.png')
+    waterImg = pygame.image.load('Assets/water.png')
 
     def draw_grid(self):
+        self.screen.fill((125, 219, 239)) #fiils the screen so it has a blue background
         
         for i in range(0, len(self.grid)):
             if len(self.grid[i]) == 1:
@@ -23,6 +26,15 @@ class Level():
                 if self.grid[i][0] == 2:
                     for j in range(0, settings.SCREEN_WIDTH, settings.TILE_SIZE):
                         self.screen.blit(pygame.transform.scale(self.dirtBlockImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j, i*settings.TILE_SIZE))
+
+                if self.grid[i][0] == 3:
+                    for j in range(0, settings.SCREEN_WIDTH, settings.TILE_SIZE):
+                        self.screen.blit(pygame.transform.scale(self.blueBlockImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j, i*settings.TILE_SIZE))
+
+                if self.grid[i][0] == 4:
+                    for j in range(0, settings.SCREEN_WIDTH, settings.TILE_SIZE):
+                        self.screen.blit(pygame.transform.scale(self.waterImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j, i*settings.TILE_SIZE))
+                        
             else:
 
                 for j in range(0, len(self.grid[i])):
@@ -30,3 +42,7 @@ class Level():
                         self.screen.blit(pygame.transform.scale(self.grassBlockImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j * settings.TILE_SIZE, i * settings.TILE_SIZE))
                     elif self.grid[i][j] == 2:
                         self.screen.blit(pygame.transform.scale(self.dirtBlockImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j * settings.TILE_SIZE, i * settings.TILE_SIZE))
+                    elif self.grid[i][j] == 3:
+                        self.screen.blit(pygame.transform.scale(self.blueBlockImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j * settings.TILE_SIZE, i * settings.TILE_SIZE))
+                    elif self.grid[i][j] == 4:
+                        self.screen.blit(pygame.transform.scale(self.waterImg, (settings.TILE_SIZE, settings.TILE_SIZE)), (j * settings.TILE_SIZE, i * settings.TILE_SIZE))
